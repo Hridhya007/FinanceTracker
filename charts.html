@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Charts - Personal Finance Tracker</title>
+  <link rel="stylesheet" href="styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Saira&display=swap" rel="stylesheet">
+</head>
+<body class="white-section">
+  <nav class="fixed-nav">
+    <div class="nav-container">
+      <a href="#hero" class="nav-logo">Finance Tracker</a>
+      <div class="nav-links">
+        <a href="home.html">Home</a>
+        <a href="index.html">Transactions</a>
+        <a href="summary.html">Dashboard</a>
+        <a href="goals.html">Goals</a>
+      </div>
+      <a href="index.html" class="nav-button">Get Started</a>
+    </div>
+  </nav>
+  <header class="simple-header">
+    <h1>Data Visualization</h1>
+    <p>Insights into your financial behavior using visual data.</p>
+  </header>
+
+  <section class="chart-section">
+    <!-- Pie Chart -->
+    <div class="chart-card">
+      <h3>Spending Distribution</h3>
+      <canvas id="pieChart" width="400" height="400"></canvas>
+    </div>
+
+    <!-- Bar Chart -->
+    <div class="chart-card">
+      <h3>Monthly Expenses</h3>
+      <canvas id="barChart" width="600" height="400"></canvas>
+    </div>
+  </section>
+
+  <!-- Add Chart.js and your chart code just before closing body tag -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      // Pie Chart
+      const pieCtx = document.getElementById('pieChart').getContext('2d');
+      new Chart(pieCtx, {
+        type: 'pie',
+        data: {
+          labels: ['Food', 'Transport', 'Utilities', 'Entertainment', 'Other'],
+          datasets: [{
+            label: 'Spending',
+            data: [300, 150, 100, 80, 70],
+            backgroundColor: ['#31d6a3', '#0c2d28', '#65e8c7', '#7bdcb5', '#9ef3de']
+          }]
+        },
+        options: {
+          responsive: true,
+          plugins: {
+            legend: {
+              position: 'right'
+            }
+          }
+        }
+      });
+
+      // Bar Chart
+      const barCtx = document.getElementById('barChart').getContext('2d');
+      new Chart(barCtx, {
+        type: 'bar',
+        data: {
+          labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May'],
+          datasets: [{
+            label: 'Expenses (₹)',
+            data: [1200, 950, 1100, 1400, 1000],
+            backgroundColor: '#31d6a3'
+          }]
+        },
+        options: {
+          responsive: true,
+          scales: {
+            y: {
+              beginAtZero: true,
+              ticks: {
+                callback: function(value) {
+                  return '₹' + value;
+                }
+              }
+            }
+          }
+        }
+      });
+    });
+  </script>
+</body>
+</html>
