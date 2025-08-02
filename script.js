@@ -137,7 +137,7 @@ document.addEventListener("DOMContentLoaded", () => {
     btnGroup.appendChild(editBtn);
     btnGroup.appendChild(deleteBtn);
 
-    // ✅ Append content first, then buttons (to show on right)
+    // Append content first, then buttons (to show on right)
     item.appendChild(content);
     item.appendChild(btnGroup);
     list.appendChild(item);
@@ -329,11 +329,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Initial chart creation
   updateCharts();
-
-  // Update charts when transactions change (add this to your transaction submission handler)
   window.updateFinanceCharts = updateCharts;
 });
-
-// Add this to your transaction form submission handler after saving transactions:
-// window.updateFinanceCharts();
 });
